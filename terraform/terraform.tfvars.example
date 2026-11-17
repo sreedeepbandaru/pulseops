@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars and fill in your values:
+#   cp terraform.tfvars.example terraform.tfvars
+# terraform.tfvars is gitignored — never commit it.
+aws_region    = "us-east-1"
+project_name  = "pulseops"
+my_ip         = "203.0.113.10/32" # <-- REPLACE with your IP + /32
+instance_type = "t3.small"
+key_name      = "" # e.g. "pulseops-key" if you created a key pair in AWS

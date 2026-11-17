@@ -1,0 +1,9 @@
+# PulseOps worker — Dockerfile.worker
+# Build:  docker build -f Dockerfile.worker -t pulseops-worker:1.0 .
+# Run:    docker run pulseops-worker:1.0
+FROM python:3.12-slim
+WORKDIR /app
+COPY app/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY app/ .
+CMD ["python3", "worker.py"]

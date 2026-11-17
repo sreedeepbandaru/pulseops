@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PulseOps — Real-Time Operations Dashboard</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<!-- Chart.js and Socket.IO from CDN — no build step needed -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>⚡ PulseOps</h1>
+    <p class="subtitle">Real-Time Operations Dashboard</p>
+  </div>
+  <div class="top-right">
+    <span id="live-dot" class="live-dot" title="Live connection"></span>
+    <span id="live-label">Connecting…</span>
+    <span id="clock" class="clock"></span>
+  </div>
+</header>
+
+<main>
+  <!-- Top numbers -->
+  <section class="stats">
+    <div class="stat-card"><span class="label">CPU</span><strong id="stat-cpu">—</strong><span class="unit">%</span></div>
+    <div class="stat-card"><span class="label">Memory</span><strong id="stat-mem">—</strong><span class="unit">%</span></div>
+    <div class="stat-card"><span class="label">Network</span><strong id="stat-net">—</strong><span class="unit">Mbps</span></div>
+    <div class="stat-card"><span class="label">Requests / sec</span><strong id="stat-rps">—</strong></div>
+    <div class="stat-card"><span class="label">Services healthy</span><strong id="stat-healthy">—</strong></div>
+    <div class="stat-card"><span class="label">Open incidents</span><strong id="stat-incidents">—</strong></div>
+  </section>
+
+  <!-- Charts -->
+  <section class="charts">
+    <div class="card"><h2>CPU % — live, every 2s</h2><canvas id="cpuChart"></canvas></div>
+    <div class="card"><h2>Memory % — live, every 2s</h2><canvas id="memChart"></canvas></div>
+    <div class="card wide"><h2>Network Mbps — live, every 2s</h2><canvas id="netChart"></canvas></div>
+  </section>
+
+  <!-- Services + incidents -->
+  <section class="grid">
+    <div class="card">
+      <h2>Service health</h2>
+      <div id="services">Loading services…</div>
+    </div>
+    <div class="card">
+      <h2>Live incident feed</h2>
+      <ul id="incidents" class="feed">Loading incidents…</ul>
+    </div>
+  </section>
+
+  <!-- Logs -->
+  <section class="card">
+    <h2>Live log stream</h2>
+    <pre id="logs" class="logs">Waiting for logs…</pre>
+  </section>
+
+  <p class="footer">PulseOps 1.0.0 · Data is simulated by the worker / built-in simulator ·
+  API: <code>/api/services</code> · <code>/api/incidents</code> · <code>/api/metrics</code> ·
+  <code>/api/health</code> · <code>/health</code> · <code>/metrics</code></p>
+</main>
+<script src="/static/js/dashboard.js"></script>
+</body>
+</html>

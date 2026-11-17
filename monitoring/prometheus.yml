@@ -1,0 +1,19 @@
+# Prometheus — scrapes PulseOps every 15 seconds.
+# In docker-compose, Prometheus runs at http://localhost:9090
+# and scrapes the web app at http://web:5000/metrics.
+# On EC2, the same file works if Prometheus runs on the same host.
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "pulseops-web"
+    static_configs:
+      - targets: ["web:5000"]
+    metrics_path: /metrics
+
+  # Optional: add node_exporter on the EC2 host to watch the server itself
+  # (CPU, disk, memory of the machine, not just the app).
+  # Run node_exporter on the host, then uncomment:
+  # - job_name: "node"
+  #   static_configs:
+  #     - targets: ["host.docker.internal:9100"]

@@ -1,0 +1,42 @@
+/* PulseOps dashboard — plain CSS, no build step. Dark SRE-console look. */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #0b1220; color: #e5e7eb; }
+.topbar { display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 24px; background: #111827; border-bottom: 1px solid #1f2937; }
+.topbar h1 { margin: 0; font-size: 26px; }
+.subtitle { margin: 2px 0 0; color: #9ca3af; font-size: 13px; }
+.top-right { display: flex; gap: 10px; align-items: center; font-size: 14px; }
+.live-dot { width: 12px; height: 12px; border-radius: 50%; background: #f59e0b; }
+.live-dot.on { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+.clock { color: #9ca3af; }
+main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.stat-card { background: #111827; border: 1px solid #1f2937; border-radius: 10px;
+  padding: 14px; }
+.stat-card .label { display: block; color: #9ca3af; font-size: 12px; text-transform: uppercase; }
+.stat-card strong { font-size: 28px; }
+.stat-card .unit { color: #9ca3af; margin-left: 4px; }
+.charts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.charts .wide { grid-column: 1 / -1; }
+.card { background: #111827; border: 1px solid #1f2937; border-radius: 10px; padding: 16px; }
+.card h2 { margin: 0 0 12px; font-size: 16px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.feed { list-style: none; margin: 0; padding: 0; }
+.feed li { padding: 8px 0; border-bottom: 1px solid #1f2937; font-size: 14px; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px;
+  text-transform: uppercase; margin-right: 6px; }
+.badge.critical { background: #7f1d1d; color: #fecaca; }
+.badge.warning { background: #78350f; color: #fde68a; }
+.badge.info { background: #1e3a5f; color: #bfdbfe; }
+.service-row { display: flex; justify-content: space-between; padding: 8px 0;
+  border-bottom: 1px solid #1f2937; font-size: 14px; }
+.status { font-weight: 600; }
+.status.healthy { color: #22c55e; } .status.degraded { color: #f59e0b; } .status.down { color: #ef4444; }
+.logs { background: #020617; border-radius: 8px; padding: 12px; height: 220px;
+  overflow-y: auto; font-size: 12px; line-height: 1.6; white-space: pre-wrap; }
+.footer { color: #6b7280; font-size: 12px; margin-top: 16px; }
+@media (max-width: 800px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .charts, .grid { grid-template-columns: 1fr; }
+}
